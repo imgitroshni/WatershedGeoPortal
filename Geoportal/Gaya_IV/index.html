@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en" oncontextmenu="return false">
+
+<head>
+  <title>Watershed Geo portal</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0,minimal-ui" />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ol3/3.17.1/ol.css" type="text/css" />
+  <link rel="stylesheet" href="./main.css" />
+</head>
+
+<body>
+  <div id="style_Legend" class="class_Legend" style="font-size: 14px">
+    <p style="text-align: center; font-size: 16px; color: blue">
+      <b>Legend</b>
+    </p>
+    <p id="infoLigend"></p>
+    <p id="infoLigendTerrain"></p>
+    <p id="infoLigendLULC"></p>
+    <p id="infoLigendSoil"></p>
+    <p id="infoLigendSuitability"></p>
+    <p id="infoLigendHydrology"></p>
+    <p id="infoLigend_Surface"></p>
+    <p id="infoLigend_Sub_Surface"></p>
+  </div>
+  <header>
+    <div class="headerNav">
+      <div class="Logo">
+        <img src="../images/Logo.png" class="logo_img">
+        <h2>Watershed Geoportal</h2>
+      </div>
+      <ul id="menu_box">
+        <li><a href="../index.html">HOME</a></li>
+        <li><a href="#">ABOUT</a></li>
+        <li><a href="#">NEWS</a></li>
+        <li><a href="#">CONTACTS</a></li>
+      </ul>
+      <span class="material-symbols-outlined" id="apps">
+        apps
+      </span>
+    </div>
+
+    <div class="bgImage">
+      <div class="overlay"></div>
+      <div class="content">
+        <!-- <h1>Pradhan Mantri Krishi Sinchayee Yojana<span>(PMKSY2.0)-Bihar</span></h1> -->
+        <h1>WDC2.0/IV-<span>Gaya</span></h1>
+        <h2>SPATIAL WATERSHED MANAGEMENT INFORMATION SYSTEM</h2>
+        <button>Decision Support System</button>
+
+        <!--  <div class="scrollImages">
+             <div class="cards">
+                <div class="card"><img src="./images/bihar1.jpg" alt=""></div>
+                <div class="card"><img src="./images/Bihar2.jpg" alt=""></div>
+                <div class="card"><img src="./images/Bihar3.jpg" alt=""></div>
+                <div class="card"><img src="./images/bihar4.webp" alt=""></div>
+                <div class="card"><img src="./images/bihar1.jpg" alt=""></div>
+                <div class="card"><img src="./images/Bihar2.jpg" alt=""></div>
+                <div class="card"><img src="./images/Bihar3.jpg" alt=""></div>
+                <div class="card"><img src="./images/bihar4.webp" alt=""></div>
+             </div>
+        </div> -->
+      </div>
+
+    </div>
+
+  </header>
+
+
+  <div class="main">
+    <div class="column left">
+      <button class="nav-button" id="nav-button" onclick="navbarShowOrHide()">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+          style="height: 25px; width: 25px">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+        </svg>
+      </button>
+      <nav class="navbar" id="navbar">
+        <ul>
+          <!----------- Administrattive Boundary ------------->
+          <li class="dropdown">
+            <a href="#"><b>Administrative Boundary<span>&rsaquo;</span></b></a>
+            <ul>
+              <li class="dropdown2">
+                <a href="#">WDC2.0/IV/Gaya <span>&rsaquo;</span></a>
+                <ul>
+                  <li><a href="#"> <input type="checkbox" id="myCheck_Gaya_2_4_Watershed_Boundary"
+                        onclick="Fun_Gaya_2_4_Watershed_Boundary()" />
+                      Watershed Boundary</a></li>
+                  <li><a href="#"> <input type="checkbox" id="myCheck_Gaya_2_4_Microwatershed_Boundary"
+                        onclick="Fun_Gaya_2_4_Microwatershed_Boundary()" />
+                      Micro Watershed Boundary</a></li>
+                  <li><a href="#"><input type="checkbox" id="myCheck_Gaya_2_4_Village_Boundary"
+                        onclick="Fun_Gaya_2_4_Village_Boundary()" />
+                      Village Boundary</a></li>
+                  <li><a href="#"><input type="checkbox" id="myCheck_Village_Boundary" onclick="" />
+                      Cadastral Boundary</a></li>
+
+                </ul>
+              </li>
+
+
+            </ul>
+          </li>
+          <!---------------- Terrain -------------------->
+          <li class="dropdown">
+            <a href="#"><b>Terrain<span>&rsaquo;</span></b></a>
+            <table class="table table_AdminUnits">
+              <tr>
+                <td class="td td-AdminUnits">
+                  <input type="checkbox" id="myCheck_Gaya_2_4_Hillshade" onclick="Fun_Gaya_2_4_Hillshade()" />
+                  Hillshade
+                </td>
+              </tr>
+              <tr>
+                <td class="td td-AdminUnits">
+                  <input type="checkbox" id="myCheck_Gaya_2_4_Aspect" onclick="Fun_Gaya_2_4_Aspect()" />
+                  Aspect
+                </td>
+              </tr>
+
+              <tr>
+                <td class="td td-AdminUnits">
+                  <input type="checkbox" id="myCheck_Gaya_2_4_CNBL" onclick="Fun_Gaya_2_4_CNBL()" />
+                  CNBL
+                </td>
+              </tr>
+              <tr>
+                <td class="td td-AdminUnits">
+                  <input type="checkbox" id="myCheck_Gaya_2_4_CND" onclick="Fun_Gaya_2_4_CND()" />
+                  CND
+                </td>
+              </tr>
+
+              <tr>
+                <td class="td td-AdminUnits">
+                  <input type="checkbox" id="myCheck_Gaya_2_4_Elevation" onclick="Fun_Gaya_2_4_Elevation()" />
+                  Elevation
+                </td>
+              </tr>
+              <tr>
+                <td class="td td-AdminUnits">
+                  <input type="checkbox" id="myCheck_Gaya_2_4_LS_Factor" onclick="Fun_Gaya_2_4_LS_Factor()" />
+                  LS-Factor
+                </td>
+              </tr>
+              <tr>
+                <td class="td td-AdminUnits">
+                  <input type="checkbox" id="myCheck_Gaya_2_4_MRRTF" onclick="Fun_Gaya_2_4_MRRTF()" />
+                  MRRTF
+                </td>
+              </tr>
+              <tr>
+                <td class="td td-AdminUnits">
+                  <input type="checkbox" id="myCheck_Gaya_2_4_MRVBF" onclick="Fun_Gaya_2_4_MRVBF()" />
+                  MRVBF
+                </td>
+              </tr>
+
+
+              <tr>
+                <td class="td td-AdminUnits">
+                  <input type="checkbox" id="myCheck_Gaya_2_4_RSP" onclick="Fun_Gaya_2_4_RSP()" />
+                  RSP
+                </td>
+              </tr>
+              <tr>
+                <td class="td td-AdminUnits">
+                  <input type="checkbox" id="myCheck_Gaya_2_4_Terrain_Slope" onclick="Fun_Gaya_2_4_Terrain_Slope()" />
+                  Slope
+                </td>
+              </tr>
+
+              <tr>
+                <td class="td td-AdminUnits">
+                  <input type="checkbox" id="myCheck_Gaya_2_4_Total_Catchment_Area"
+                    onclick="Fun_Gaya_2_4_Total_Catchment_Area()" />
+                  Total Catchment Area
+                </td>
+              </tr>
+              <tr>
+                <td class="td td-AdminUnits">
+                  <input type="checkbox" id="myCheck_Gaya_2_4_TWI" onclick="Fun_Gaya_2_4_TWI()" />
+                  TWI
+                </td>
+              </tr>
+              <tr>
+                <td class="td td-AdminUnits">
+                  <input type="checkbox" id="myCheck_Gaya_2_4_Valley_Depth" onclick="Fun_Gaya_2_4_Valley_Depth()" />
+                  Valley Depth
+                </td>
+              </tr>
+            </table>
+          </li>
+          <!---------------- Satalite Data ------------------>
+          <li class="dropdown">
+            <a href="#"><b>Satellite Data<span>&rsaquo;</span></b></a>
+            <table class="table table_AdminUnits">
+              <tr>
+                <td class="td td-AdminUnits">
+                  <input type="checkbox" id="myCheck_Gaya_Satellite" onclick="Fun_Gaya_Satellite()" />
+                  Gaya Satellite Data
+                </td>
+
+              </tr>
+            </table>
+          </li>
+          <!---------------------- LULC ------------------->
+          <li class="dropdown">
+            <a href="#"><b>LULC<span>&rsaquo;</span></b></a>
+            <table class="table table_AdminUnits">
+              <tr>
+                <td class="td td-AdminUnits">
+                  <input type="checkbox" id="myCheck_Gaya_2_4_LULC_2011" onclick="Fun_Gaya_2_4_LULC_2011()" />
+                  2011
+                </td>
+              </tr>
+              <tr>
+                <td class="td td-AdminUnits">
+                  <input type="checkbox" id="myCheck_Gaya_2_4_LULC_2013" onclick="Fun_Gaya_2_4_LULC_2013()" />
+                  2013
+                </td>
+              </tr>
+              <tr>
+                <td class="td td-AdminUnits">
+                  <input type="checkbox" id="myCheck_Gaya_2_4_LULC_2015" onclick="Fun_Gaya_2_4_LULC_2015()" />
+                  2015
+                </td>
+              </tr>
+              <tr>
+                <td class="td td-AdminUnits">
+                  <input type="checkbox" id="myCheck_Gaya_2_4_LULC_2019" onclick="Fun_Gaya_2_4_LULC_2019()" />
+                  2019
+                </td>
+              </tr>
+              <tr>
+                <td class="td td-AdminUnits">
+                  <input type="checkbox" id="myCheck_Gaya_2_4_LULC_2024" onclick="Fun_Gaya_2_4_LULC_2024()" />
+                  2024
+                </td>
+              </tr>
+            </table>
+          </li>
+          <!----------------- Base Map ---------------------->
+          <li class="dropdown">
+            <a href="#"><b>Base Map<span>&rsaquo;</span></b></a>
+            <table class="table table_AdminUnits">
+              <tr>
+                <td class="td td-AdminUnits">
+                  <input type="checkbox" id="myCheck_Gaya_2_4_Broad_Landform" onclick="Fun_Gaya_2_4_Broad_Landform()" />
+                  Broad Landform
+                </td>
+              </tr>
+              <tr>
+                <td class="td td-AdminUnits">
+                  <input type="checkbox" id="myCheck_Gaya_2_4_Landform" onclick="Fun_Gaya_2_4_Landform()" />
+                  Landform
+                </td>
+              </tr>
+              <tr>
+                <td class="td td-AdminUnits">
+                  <input type="checkbox" id="myCheck_Gaya_2_4_Landuse" onclick="Fun_Gaya_2_4_Landuse()" />
+                  Landuse
+                </td>
+              </tr>
+              <tr>
+                <td class="td td-AdminUnits">
+                  <input type="checkbox" id="myCheck_Gaya_2_4_TMU" onclick="Fun_Gaya_2_4_TMU()" />
+                  TMU
+                </td>
+              </tr>
+              <tr>
+                <td class="td td-AdminUnits">
+                  <input type="checkbox" id="myCheck_Gaya_2_4_Slope" onclick="Fun_Gaya_2_4_Slope()" />
+                  Slope
+                </td>
+              </tr>
+            </table>
+          </li>
+          <!------------------ Soil -------------------------->
+          <li class="dropdown">
+            <a href="#"><b>Soil<span>&rsaquo;</span></b></a>
+            <table class="table table_AdminUnits">
+              <tr>
+                <td class="td td-AdminUnits">
+                  <input type="checkbox" id="myCheck_Gaya_2_4_Soil_Map" onclick="Fun_Gaya_2_4_Soil_Map()" />
+                  Soil Map
+                </td>
+              </tr>
+              <tr>
+                <td class="td td-AdminUnits">
+                  <input type="checkbox" id="myCheck_Gaya_2_4_Soil_Depth" onclick="Fun_Gaya_2_4_Soil_Depth()" />
+                  Soil Depth
+                </td>
+              </tr>
+              <tr>
+                <td class="td td-AdminUnits">
+                  <input type="checkbox" id="myCheck_Gaya_2_4_Soil_Erosion" onclick="Fun_Gaya_2_4_Soil_Erosion()" />
+                  Soil Erosion
+                </td>
+              </tr>
+
+              <tr>
+                <td class="td td-AdminUnits">
+                  <input type="checkbox" id="myCheck_Gaya_2_4_Soil_Drainage" onclick="Fun_Gaya_2_4_Soil_Drainage()" />
+                  Soil Drainage
+                </td>
+              </tr>
+              <tr>
+                <td class="td td-AdminUnits">
+                  <input type="checkbox" id="myCheck_Gaya_2_4_Surface_Texture"
+                    onclick="Fun_Gaya_2_4_Surface_Texture()" />
+                  Surface Texture
+                </td>
+              </tr>
+              <tr>
+                <td class="td td-AdminUnits">
+                  <input type="checkbox" id="myCheck_Gaya_2_4_Land_Capability"
+                    onclick="Fun_Gaya_2_4_Land_Capability()" />
+                  Land Capability
+                </td>
+              </tr>
+
+            </table>
+          </li>
+          <!------------------ Suitability-------------------------->
+          <li class="dropdown">
+            <a href="#"><b>Suitability<span>&rsaquo;</span></b></a>
+            <table class="table table_AdminUnits">
+              <tr>
+                <td class="td td-AdminUnits">
+                  <input type="checkbox" id="myCheck_Gaya_2_4_Arhar" onclick="Fun_Gaya_2_4_Arhar()" />
+                  Arhar
+                </td>
+              </tr>
+              <tr>
+                <td class="td td-AdminUnits">
+                  <input type="checkbox" id="myCheck_Gaya_2_4_Horsegram" onclick="Fun_Gaya_2_4_Horsegram()" />
+                  Horsegram
+                </td>
+              </tr>
+              <tr>
+                <td class="td td-AdminUnits">
+                  <input type="checkbox" id="myCheck_Gaya_2_4_Kharif_Maize" onclick="Fun_Gaya_2_4_Kharif_Maize()" />
+                  Kharif Maize
+                </td>
+              </tr>
+              <tr>
+                <td class="td td-AdminUnits">
+                  <input type="checkbox" id="myCheck_Gaya_2_4_Kharif_Paddy" onclick="Fun_Gaya_2_4_Kharif_Paddy()" />
+                  Kharif Paddy
+                </td>
+              </tr>
+              <tr>
+                <td class="td td-AdminUnits">
+                  <input type="checkbox" id="myCheck_Gaya_2_4_Lentil" onclick="Fun_Gaya_2_4_Lentil()" />
+                  Lentil
+                </td>
+              </tr>
+              <tr>
+                <td class="td td-AdminUnits">
+                  <input type="checkbox" id="myCheck_Gaya_2_4_Potato" onclick="Fun_Gaya_2_4_Potato()" />
+                  Potato
+                </td>
+              </tr>
+              <tr>
+                <td class="td td-AdminUnits">
+                  <input type="checkbox" id="myCheck_Gaya_2_4_Sesame" onclick="Fun_Gaya_2_4_Sesame()" />
+                  Sesame
+                </td>
+              </tr>
+              <tr>
+                <td class="td td-AdminUnits">
+                  <input type="checkbox" id="myCheck_Gaya_2_4_Summer_Paddy" onclick="Fun_Gaya_2_4_Summer_Paddy()" />
+                  Summer Paddy
+                </td>
+              </tr>
+              <tr>
+                <td class="td td-AdminUnits">
+                  <input type="checkbox" id="myCheck_Gaya_2_4_Wheat" onclick="Fun_Gaya_2_4_Wheat()" />
+                  Wheat
+                </td>
+              </tr>
+              <tr>
+                <td class="td td-AdminUnits">
+                  <input type="checkbox" id="myCheck_Gaya_2_4_Vegetables" onclick="Fun_Gaya_2_4_Vegetables()" />
+                  Vegetables
+                </td>
+              </tr>
+            </table>
+          </li>
+          <!---------------- Fertility -------------------->
+
+          <li class="dropdown">
+            <a href="#"><b>Fertility<span>&rsaquo;</span></b></a>
+            <ul>
+              <li class="dropdown2" id="surface">
+                <a href="#">Surface<span>&rsaquo;</span></a>
+                <ul>
+                  <li><a href="#"> <input type="checkbox" id="myCheck_Gaya_2_4_Boron" onclick="Fun_Gaya_2_4_Boron()" />
+                      Boron</a></li>
+                  <li><a href="#"> <input type="checkbox" id="myCheck_Gaya_2_4_Calcium_Carbonate"
+                        onclick="Fun_Gaya_2_4_Calcium_Carbonate()" />
+                      Calcium Carbonate</a></li>
+                  <li><a href="#"><input type="checkbox" id="myCheck_Gaya_2_4_Clay" onclick="Fun_Gaya_2_4_Clay()" />
+                      Clay</a></li>
+                  <li><a href="#"> <input type="checkbox" id="myCheck_Gaya_2_4_Copper"
+                        onclick="Fun_Gaya_2_4_Copper()" />
+                      Copper</a></li>
+                  <li><a href="#"> <input type="checkbox" id="myCheck_Gaya_2_4_Electrical_Conductivity"
+                        onclick="Fun_Gaya_2_4_Electrical_Conductivity()" />
+                      Electrical Conductivity</a></li>
+                  <li><a href="#"><input type="checkbox" id="myCheck_Gaya_2_4_Iron" onclick="Fun_Gaya_2_4_Iron()" />
+                      Iron</a></li>
+                  <li><a href="#"> <input type="checkbox" id="myCheck_Gaya_2_4_Manganese"
+                        onclick="Fun_Gaya_2_4_Manganese()" />
+                      Manganese</a></li>
+                  <li><a href="#"> <input type="checkbox" id="myCheck_Gaya_2_4_Nitrogen"
+                        onclick="Fun_Gaya_2_4_Nitrogen()" />
+                      Nitrogen</a></li>
+                  <li><a href="#"><input type="checkbox" id="myCheck_Gaya_2_4_Organic_Carbon"
+                        onclick="Fun_Gaya_2_4_Organic_Carbon()" />
+                      Organic Carbon</a></li>
+                  <li><a href="#"> <input type="checkbox" id="myCheck_Gaya_2_4_Phosphorus"
+                        onclick="Fun_Gaya_2_4_Phosphorus()" />
+                      Phosphorus</a></li>
+                  <li><a href="#"> <input type="checkbox" id="myCheck_Gaya_2_4_Potassium"
+                        onclick="Fun_Gaya_2_4_Potassium()" />
+                      Potassium</a></li>
+                  <li><a href="#"><input type="checkbox" id="myCheck_Gaya_2_4_Sand" onclick="Fun_Gaya_2_4_Sand()" />
+                      Sand</a></li>
+                  <li><a href="#"> <input type="checkbox" id="myCheck_Gaya_2_4_Silt" onclick="Fun_Gaya_2_4_Silt()" />
+                      Silt</a></li>
+                  <li><a href="#"> <input type="checkbox" id="myCheck_Gaya_2_4_Soil_Reaction"
+                        onclick="Fun_Gaya_2_4_Soil_Reaction()" />
+                      Soil Reaction</a></li>
+                  <li><a href="#"><input type="checkbox" id="myCheck_Gaya_2_4_Sulphur"
+                        onclick="Fun_Gaya_2_4_Sulphur()" />
+                      Sulphur</a></li>
+                  <li><a href="#"> <input type="checkbox" id="myCheck_Gaya_2_4_Zinc" onclick="Fun_Gaya_2_4_Zinc()" />
+                      Zinc</a></li>
+
+                </ul>
+              </li>
+              <li class="dropdown2" id="sub_surface">
+                <a href="#">Sub_Surface<span>&rsaquo;</span></a>
+                <ul>
+                  <li><a href="#"> <input type="checkbox" id="myCheck_Gaya_2_4_Sub_Calcium_Carbonate"
+                        onclick="Fun_Gaya_2_4_Sub_Calcium_Carbonate()" />
+                      Calcium Carbonate</a></li>
+                  <li><a href="#"><input type="checkbox" id="myCheck_Gaya_2_4_Sub_Clay"
+                        onclick="Fun_Gaya_2_4_Sub_Clay()" />
+                      Clay</a></li>
+                  <li><a href="#"> <input type="checkbox" id="myCheck_Gaya_2_4_Sub_Copper"
+                        onclick="Fun_Gaya_2_4_Sub_Copper()" />
+                      Copper</a></li>
+                  <li><a href="#"> <input type="checkbox" id="myCheck_Gaya_2_4_Sub_Electrical_Conductivity"
+                        onclick="Fun_Gaya_2_4_Sub_Electrical_Conductivity()" />
+                      Electrical Conductivity</a></li>
+                  <li><a href="#"><input type="checkbox" id="myCheck_Gaya_2_4_Sub_Iron"
+                        onclick="Fun_Gaya_2_4_Sub_Iron()" />
+                      Iron</a></li>
+                  <li><a href="#"> <input type="checkbox" id="myCheck_Gaya_2_4_Sub_Manganese"
+                        onclick="Fun_Gaya_2_4_Sub_Manganese()" />
+                      Manganese</a></li>
+                  <li><a href="#"> <input type="checkbox" id="myCheck_Gaya_2_4_Sub_Nitrogen"
+                        onclick="Fun_Gaya_2_4_Sub_Nitrogen()" />
+                      Nitrogen</a></li>
+                  <li><a href="#"><input type="checkbox" id="myCheck_Gaya_2_4_Sub_Organic_Carbon"
+                        onclick="Fun_Gaya_2_4_Sub_Organic_Carbon()" />
+                      Organic Carbon</a></li>
+                  <li><a href="#"> <input type="checkbox" id="myCheck_Gaya_2_4_Sub_Phosphorus"
+                        onclick="Fun_Gaya_2_4_Sub_Phosphorus()" />
+                      Phosphorus</a></li>
+                  <li><a href="#"> <input type="checkbox" id="myCheck_Gaya_2_4_Sub_Potassium"
+                        onclick="Fun_Gaya_2_4_Sub_Potassium()" />
+                      Potassium</a></li>
+                  <li><a href="#"><input type="checkbox" id="myCheck_Gaya_2_4_Sub_Sand"
+                        onclick="Fun_Gaya_2_4_Sub_Sand()" />
+                      Sand</a></li>
+                  <li><a href="#"> <input type="checkbox" id="myCheck_Gaya_2_4_Sub_Silt"
+                        onclick="Fun_Gaya_2_4_Sub_Silt()" />
+                      Silt</a></li>
+                  <li><a href="#"> <input type="checkbox" id="myCheck_Gaya_2_4_Sub_Soil_Reaction"
+                        onclick="Fun_Gaya_2_4_Sub_Soil_Reaction()" />
+                      Soil Reaction</a></li>
+                  <li><a href="#"><input type="checkbox" id="myCheck_Gaya_2_4_Sub_Sulphur"
+                        onclick="Fun_Gaya_2_4_Sub_Sulphur()" />
+                      Sulphur</a></li>
+                  <li><a href="#"> <input type="checkbox" id="myCheck_Gaya_2_4_Sub_Zinc"
+                        onclick="Fun_Gaya_2_4_Sub_Zinc()" />
+                      Zinc</a></li>
+
+                </ul>
+              </li>
+
+
+            </ul>
+          </li>
+          <!---------------- Hydrology ------------------>
+
+          <li class="dropdown">
+            <a href="#"><b>Hydrology<span>&rsaquo;</span></b></a>
+            <table class="table table_AdminUnits">
+              <tr>
+                <td class="td td-AdminUnits">
+                  <input type="checkbox" id="myCheck_Gaya_2_4_Drainage" onclick="Fun_Gaya_2_4_Drainage()" />
+                  Drainage Network
+                </td>
+              </tr>
+              <tr>
+                <td class="td td-AdminUnits">
+                  <input type="checkbox" id="myCheck_Gaya_2_4_Ahar" onclick="Fun_Gaya_2_4_Ahar()" />
+                  Ahar
+                </td>
+              </tr>
+              <tr>
+                <td class="td td-AdminUnits">
+                  <input type="checkbox" id="myCheck_Gaya_2_4_Canal" onclick="Fun_Gaya_2_4_Canal()" />
+                  Canal
+                </td>
+              </tr>
+              <tr>
+                <td class="td td-AdminUnits">
+                  <input type="checkbox" id="myCheck_Gaya_2_4_Soil_Water_Conservation"
+                    onclick="Fun_Gaya_2_4_Soil_Water_Conservation()" />
+                  Soil Water Conservation
+                </td>
+              </tr>
+              <tr>
+                <td class="td td-AdminUnits">
+                  <input type="checkbox" id="myCheck_Gaya_2_4_Ground_Water_Potential"
+                    onclick="Fun_Gaya_2_4_Ground_Water_Potential()" />
+                  Ground Water Potential Zone
+                </td>
+              </tr>
+              <tr>
+                <td class="dropdown2">
+                  <a href="#"><b>Water Index<span>&rsaquo;</span></b></a>
+                  <table class="table table_AdminUnits">
+                    <tr>
+                      <td class="td td-AdminUnits">
+                        <input type="checkbox" id="myCheck_Gaya_2_4_Water_Arsenic" onclick="Fun_Gaya_2_4_Water_Arsenic()" />
+                        Arsenic
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="td td-AdminUnits">
+                        <input type="checkbox" id="myCheck_Gaya_2_4_Water_Bicarbonate" onclick="Fun_Gaya_2_4_Water_Bicarbonate()" />
+                        Bicarbonate
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="dropdown3">
+                        <a href="#"><b>Boron<span>&rsaquo;</span></b></a>
+                        <table class="table table_AdminUnits">
+                          <tr>
+                            <td class="td td-AdminUnits">
+                              <input type="checkbox" id="myCheck_Gaya_2_4_Water_BoronSemiTolerantCrop" onclick="Fun_Gaya_2_4_Water_BoronSemiTolerantCrop()" />
+                              Boron Semi Tolerant Crop
+                            </td>
+                          </tr>
+                          <tr>
+                            <td class="td td-AdminUnits">
+                              <input type="checkbox" id="myCheck_Gaya_2_4_Water_BoronSensitiveCrop" onclick="Fun_Gaya_2_4_Water_BoronSensitiveCrop()" />
+                              Boron Sensitive Crop
+                            </td>
+                          </tr>
+                          <tr>
+                            <td class="td td-AdminUnits">
+                              <input type="checkbox" id="myCheck_Gaya_2_4_Water_BoronTolerantCrop" onclick="Fun_Gaya_2_4_Water_BoronTolerantCrop()" />
+                              Boron Tolerant Crop
+                            </td>
+                          </tr>
+                        </table>
+                          
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="td td-AdminUnits">
+                        <input type="checkbox" id="myCheck_Gaya_2_4_Water_Calcium" onclick="Fun_Gaya_2_4_Water_Calcium()" />
+                        Calcium
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="td td-AdminUnits">
+                        <input type="checkbox" id="myCheck_Gaya_2_4_Water_Carbonate" onclick="Fun_Gaya_2_4_Water_Carbonate()" />
+                        Carbonate
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="dropdown3">
+                        <a href="#"><b>Chloride Ions<span>&rsaquo;</span></b></a>
+                        <table class="table table_AdminUnits">
+                          <tr>
+                            <td class="td td-AdminUnits">
+                              <input type="checkbox" id="myCheck_Gaya_2_4_Water_PlantSensitivity" onclick="Fun_Gaya_2_4_Water_PlantSensitivity()" />
+                              Plant Sensitivity
+                            </td>
+                          </tr>
+                          <tr>
+                            <td class="td td-AdminUnits">
+                              <input type="checkbox" id="myCheck_Gaya_2_4_Water_WaterSuitabilityIrrigation" onclick="Fun_Gaya_2_4_Water_WaterSuitabilityIrrigation()" />
+                              Water Suitability of Irrigation
+                            </td>
+                          </tr>
+                        </table>
+                          
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="td td-AdminUnits">
+                        <input type="checkbox" id="myCheck_Gaya_2_4_water_ElectricalConductivity" onclick="Fun_Gaya_2_4_water_ElectricalConductivity()" />
+                        Electrical Conductivity
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="td td-AdminUnits">
+                        <input type="checkbox" id="myCheck_Gaya_2_4_Water_Magnesium" onclick="Fun_Gaya_2_4_Water_Magnesium()" />
+                        Magnesium
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="td td-AdminUnits">
+                        <input type="checkbox" id="myCheck_Gaya_2_4_Water_PercentSodium" onclick="Fun_Gaya_2_4_Water_PercentSodium()" />
+                        Percent Sodium
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="td td-AdminUnits">
+                        <input type="checkbox" id="myCheck_Gaya_2_4_Water_PermeabilityHazardIndex" onclick="Fun_Gaya_2_4_Water_PermeabilityHazardIndex()" />
+                        Permeability Hazard Index
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="td td-AdminUnits">
+                        <input type="checkbox" id="myCheck_Gaya_2_4_Water_Ph" onclick="Fun_Gaya_2_4_Water_Ph()" />
+                        PH
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="td td-AdminUnits">
+                        <input type="checkbox" id="myCheck_Gaya_2_4_Water_Phosphate" onclick="Fun_Gaya_2_4_Water_Phosphate()" />
+                        Phosphate
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="td td-AdminUnits">
+                        <input type="checkbox" id="myCheck_Gaya_2_4_Water_Potassium" onclick="Fun_Gaya_2_4_Water_Potassium()" />
+                        Potassium
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="td td-AdminUnits">
+                        <input type="checkbox" id="myCheck_Gaya_2_4_Water_ResidualSodiumBicarbonate" onclick="Fun_Gaya_2_4_Water_ResidualSodiumBicarbonate()" />
+                        Residual Sodium Bicarbonate
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="td td-AdminUnits">
+                        <input type="checkbox" id="myCheck_Gaya_2_4_Water_ResidualSodiumCarbonate" onclick="Fun_Gaya_2_4_Water_ResidualSodiumCarbonate()" />
+                        Residual Sodium Carbonate
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="dropdown3">
+                        <a href="#"><b>Sodium Adsorption Ratio<span>&rsaquo;</span></b></a>
+                        <table class="table table_AdminUnits">
+                          <tr>
+                            <td class="td td-AdminUnits">
+                              <input type="checkbox" id="myCheck_Gaya_2_4_Water_SodicityHazard" onclick="Fun_Gaya_2_4_Water_SodicityHazard()" />
+                              Sodicity Hazard
+                            </td>
+                          </tr>
+                          <tr>
+                            <td class="td td-AdminUnits">
+                              <input type="checkbox" id="myCheck_Gaya_2_4_Water_WaterClass" onclick="Fun_Gaya_2_4_Water_WaterClass()" />
+                              Water Class
+                            </td>
+                          </tr>
+                        </table>
+                          
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="td td-AdminUnits">
+                        <input type="checkbox" id="myCheck_Gaya_2_4_Water_SodiumRatio" onclick="Fun_Gaya_2_4_Water_SodiumRatio()" />
+                        Sodium Ratio
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="td td-AdminUnits">
+                        <input type="checkbox" id="myCheck_Gaya_2_4_Water_Sulphate" onclick="Fun_Gaya_2_4_Water_Sulphate()" />
+                        Sulphate
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="td td-AdminUnits">
+                        <input type="checkbox" id="myCheck_Gaya_2_4_Water_TotalDissolvedSolids" onclick="Fun_Gaya_2_4_Water_TotalDissolvedSolids()" />
+                        Total Dissolved Solids
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="td td-AdminUnits">
+                        <input type="checkbox" id="myCheck_Gaya_2_4_Water_TotalHardness" onclick="Fun_Gaya_2_4_Water_TotalHardness()" />
+                        Total Hardness
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="td td-AdminUnits">
+                        <input type="checkbox" id="myCheck_Gaya_2_4_Water_TotalSaltIndex" onclick="Fun_Gaya_2_4_Water_TotalSaltIndex()" />
+                        Total Salt Index
+                      </td>
+                    </tr>
+                    
+                  </table>
+                    
+                </td>
+              </tr>
+            </table>
+          </li>
+
+          <!----------------- SocioEconomy -------------------->
+          <li class="dropdown">
+            <a href="#"><b>SocioEconomy<span>&rsaquo;</span></b></a>
+            <ul>
+              <li><a href="#">Farmer's Database</a></li>
+              <li><a href="#">Resources</a></li>
+            </ul>
+          </li>
+          <!------------------ Crops --------------------->
+          <li class="dropdown">
+            <a href="#"><b>Crops<span>&rsaquo;</span></b></a>
+            <ul>
+              <li><a href="#">Cereals</a></li>
+              <li><a href="#">Oil Seeds and Pulses</a></li>
+              <li><a href="#">Millates</a></li>
+              <li><a href="#">Horticulter</a></li>
+            </ul>
+          </li>
+          <!------------------ Land Use Planning ------------------>
+          <li class="dropdown">
+            <a href="#"><b>Land Use Planning<span>&rsaquo;</span></b></a>
+            <ul>
+              <li><a href="#">Crops Suitability </a></li>
+              <li><a href="#">Land / Watershed management units</a></li>
+              <li><a href="#">Crops yiendy production</a></li>
+              <li class="dropdown2">
+                <a href="#">Soil and water conservation plan <span>&rsaquo;</span></a>
+                <ul>
+                  <li><a href="#">Areal Treatment</a></li>
+
+                  <li class="dropdown3">
+                    <a href="#">Dranage Land line treatment <span>&rsaquo;</span></a>
+                    <ul style="top: 50px">
+                      <li><a href="#">Areal Treatment</a></li>
+                      <li>
+                        <a href="#">Propose S&WC structure</a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+
+              <li><a href="#">Land use Option</a></li>
+            </ul>
+          </li>
+        </ul>
+
+
+
+        <div class="Demo_Layers">
+          <div>
+            <form>
+              <p>&nbsp;<b>Map Switcher</b></p>
+              <input type="radio" name="Switcher" onclick="Fun_Hybrid()" checked />Hybrid<br />
+              <input type="radio" name="Switcher" onclick="Fun_Street() " />Street<br />
+            </form>
+
+            <div>
+              <p>&nbsp;<b>Attribute Query</b></p>
+              <div class="queryButtons">
+                <div>
+                  <button id="queryButton" onclick="singleQueryBoxShowOrHide()">
+                    Single Layer Query
+                  </button>
+                  <div class="attQueryDiv" id="attQueryDiv">
+                    <div class="queryHeaderDiv" id="queryHeaderDiv">
+                      <label for="">Single Layer Query</label>
+                    </div>
+                    <br />
+                    <label for="">Select Layer</label>
+                    <select name="selectLayer" id="selectLayer"></select><br /><br />
+
+                    <label for="">Select Attribute</label>
+                    <select name="selectAttribute" id="selectAttribute"></select><br /><br />
+                    <label for="">Select Value</label>
+                      <select name="selectValue" id="selectValue"></select><br /><br />
+
+                      <div>
+                        <label for="operators">Select an operator:</label>
+                        <select id="operators">
+                            <option value="AND">AND</option>
+                            <option value="OR">OR</option>
+                        </select>
+                    </div>
+                
+                    <button id="addButton">Add</button>
+
+                    <button type="button" id="attQryRun" class="attQryRun" onclick="singleQueryRun()">
+                      Run
+                    </button>
+
+                    <button type="button" id="attQryClear" class="attQryClear" onclick="clearLayers()">
+                      Clear
+                    </button>
+                  </div>
+                </div>
+                <div>
+                  <button id="queryButton" onclick="MultiQueryBoxShowOrHide()">
+                    Multiple Query
+                  </button>
+                  <div class="multiAttQueryDiv" id="multiAttQueryDiv">
+                    <div class="queryHeaderDiv" id="queryHeaderDiv">
+                      <label for="">Multiple Attribute Query</label>
+                    </div>
+                    <br />
+                    <div class="selectBoxes">
+                      <label for="">Select Layer</label>
+                      <select name="selectLayer" id="multiSelectLayer1"></select>
+
+                      <label for="">Select Attribute</label>
+                      <select name="selectAttribute" id="multiSelectAttribute1"></select>
+                      <label for="">Select Value</label>
+                      <select name="selectValue" id="multiSelectValue"></select>
+                    </div>
+                    <div class="selectBoxes">
+                      <label for="">Select Layer</label>
+                      <select name="selectLayer" id="multiSelectLayer2"></select>
+
+                      <label for="">Select Attribute</label>
+                      <select name="selectAttribute" id="multiSelectAttribute2"></select>
+                      <label for="">Select Value</label>
+                      <select name="selectValue" id="multiSelectValue"></select>
+                    </div>
+                    <div class="selectBoxes">
+                      <label for="">Select Layer</label>
+                      <select name="selectLayer" id="multiSelectLayer3"></select>
+
+                      <label for="">Select Attribute</label>
+                      <select name="selectAttribute" id="multiSelectAttribute3"></select>
+                      <label for="">Select Value</label>
+                      <select name="selectValue" id="multiSelectValue"></select>
+                    </div>
+                    <div class="selectBoxes">
+                      <label for="">Select Layer</label>
+                      <select name="selectLayer" id="multiSelectLayer4"></select>
+
+                      <label for="">Select Attribute</label>
+                      <select name="selectAttribute" id="multiSelectAttribute4"></select>
+                      <label for="">Select Value</label>
+                      <select name="selectValue" id="multiSelectValue"></select>
+                    </div><br />
+                    <div class="smallButtons">
+                      <button type="button" id="attQryRun2" class="attQryRun2" onclick="multiQueryRun()">
+                        Run
+                      </button>
+
+                      <button type="button" id="attQryClear2" class="attQryClear2" onclick="clearLayers()">
+                        Clear
+                      </button>
+                    </div>
+                  </div>
+                </div>                                              
+              </div>
+            </div>
+        </div>
+      </nav>
+    </div>
+
+    <div class="column right">
+      <div id="map" style="height: 100%"></div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ol3/3.17.1/ol.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="./main.js"></script>
+</body>
+
+</html>

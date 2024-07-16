@@ -1,0 +1,771 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+:root {
+    --PrimaryColor: hsl(199, 100%, 33%);
+    --SecondaryColor: hsl(187, 85%, 43%);
+    --gradientColor: linear-gradient(to right,
+            hsl(187, 85%, 43%),
+            hsl(199, 100%, 33%));
+
+    --whiteColor: hsl(0, 0%, 100%);
+    --blackColor: hsl(201, 33%, 16%);
+    --textColor: hsl(240, 4%, 36%);
+    --whiteColorDeam: hsl(0, 0%, 93%);
+    --greyText: rgb(190, 190, 190);
+    --inputColor: rgb(239, 239, 239);
+    --bodyColor: rgb(240, 240, 246);
+    --cardBG: rgb(225, 225, 235);
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    background: var(--whiteColorDeam);
+}
+
+header {
+    width: 100%;
+    height: 80vh;
+    margin: auto;
+
+}
+
+header nav {
+    width: 98%;
+    height: 12%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--whiteColorDeam);
+}
+
+header nav .Logo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #000;
+    gap: 10px;
+}
+
+header nav .Logo .logo_img {
+    width: 5rem;
+    height: 5rem;
+}
+
+
+header nav ul {
+    list-style: none;
+    display: flex;
+    margin-right: 4rem;
+}
+
+header nav ul li {
+    padding: 3px 15px;
+}
+
+header nav ul li a {
+    text-decoration: none;
+    color: rgb(83, 81, 81);
+    font-size: 15px;
+    font-weight: 500;
+    transition: .3s linear;
+}
+
+header nav ul li a:hover {
+    color: var(--PrimaryColor);
+}
+
+
+header nav #apps {
+    display: none;
+}
+
+header .bgImage {
+    position: relative;
+    color: var(--whiteColorDeam);
+    width: 100%;
+    height: 88%;
+    background-image: url('./images/bihar1.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    animation: bgChange 20s linear infinite;
+}
+
+header .bgImage::before {
+    position: absolute;
+    color: var(--whiteColorDeam);
+    width: 100%;
+    height: 88%;
+    background-image: url('./images/bihar1.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    animation: bgChange 20s linear infinite;
+    z-index: -1;
+}
+
+@keyframes bgChange {
+    0% {
+        background-image: url('./images/bihar1.jpg');
+    }
+
+    20% {
+        background-image: url('./images/bihar1.jpg');
+    }
+
+    25% {
+        background-image: url('./images/Bihar2.jpg');
+    }
+
+    45% {
+        background-image: url('./images/Bihar2.jpg');
+    }
+
+    50% {
+        background-image: url('./images/Bihar3.jpg');
+    }
+
+    70% {
+        background-image: url('./images/Bihar3.jpg');
+    }
+
+    75% {
+        background-image: url('./images/bihar4.webp');
+    }
+
+    95% {
+        background-image: url('./images/bihar4.webp');
+    }
+}
+
+header .overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+header .content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 2;
+}
+
+header .content h1 {
+    font-size: 40px;
+    margin-bottom: 0px;
+    text-align: center;
+}
+
+header .content h1 span {
+    color: #7ee63a;
+}
+
+header .content h2 {
+    font-size: 20px;
+    width: 60%;
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+header .content button {
+    color: white;
+    border: none;
+    outline: none;
+    font-size: 18px;
+    background: var(--gradientColor);
+    padding: 12px 26px;
+    text-transform: uppercase;
+    border-radius: 25px;
+    transition: .5s;
+    cursor: pointer;
+}
+
+header .content button:hover {
+    background: var(--PrimaryColor);
+}
+
+/* header .scrollImages{
+   position: relative;
+   width: 100%;
+   height: 200px;
+   top: 180px;
+   border-radius: 10px;
+   padding-bottom: 20px;
+   box-shadow: 0px 20px 25px -10px rgb(165, 165, 165);
+
+}
+
+header .scrollImages::before{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    background: rgb(241, 241, 241, .4);
+    backdrop-filter: blur(5px);
+    z-index: -1;
+}
+
+header .scrollImages .cards{
+    width: 96%;
+    height: auto;
+    margin: 15px auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .scrollImages .cards .card{
+    width: 220px;
+    height: 188px;
+}
+
+header .scrollImages .cards .card img{
+    width: 220px;
+    height: 188px;
+
+} */
+.main {
+    width: 90%;
+    margin: auto;
+}
+
+.secTitle {
+    width: 60%;
+    height: auto;
+    margin: auto;
+}
+
+.secTitle h1 {
+    font-weight: 600;
+    font-size: 35px;
+    text-align: center;
+    color: var(--textColor);
+    margin: 0;
+}
+
+
+.secTitle p {
+    font-weight: 600;
+    font-size: 25px;
+    text-align: center;
+    color: var(--SecondaryColor);
+    margin: 0;
+}
+
+
+.secContent {
+    margin-top: 50px;
+    display: grid;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.secContent .singleDestination {
+    height: 100%;
+    display: grid;
+    row-gap: 10px;
+    border-radius: 10px;
+    align-items: center;
+    background: var(--cardBG);
+    box-shadow: 0 2px 4px rgba(140, 140, 141, 0.549);
+    overflow: hidden;
+}
+
+.secContent .singleDestination:hover {
+    background: var(--cardHover);
+    box-shadow: 1 4px 4px rgba(85, 85, 114, 0.549);
+    transition: 0.3s ease;
+}
+
+.secContent .singleDestination .imageDiv {
+    height: 200px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.secContent .singleDestination .imageDiv img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    transition: 2s ease;
+}
+
+.secContent .singleDestination .imageDiv img:hover {
+    transform: scale(1.1);
+}
+
+
+.cardInfo {
+    padding: 1rem;
+}
+
+.cardInfo .destTitle {
+    color: var(--blackColor);
+    font-size: 1.25rem;
+}
+
+.cardInfo .continent {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+
+
+.cardInfo .continent .name {
+    color: var(--textColor);
+    font-size: 14px;
+}
+
+.cardInfo .continent #icon {
+    color: var(--textColor);
+    font-size: 14px;
+}
+
+.desc {
+    font-size: 13.5px;
+    color: var(--textColor);
+    font-weight: 500;
+}
+
+.btn {
+    color: white;
+    border: none;
+    outline: none;
+    font-size: 18px;
+    background: var(--gradientColor);
+    padding: 12px 26px;
+    text-transform: uppercase;
+    border-radius: 25px;
+    transition: .5s;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: var(--PrimaryColor);
+}
+
+.btn .icon {
+    align-self: center;
+    font-size: 18px;
+}
+
+
+.desContent{
+    
+    margin: 40px auto;
+        padding: 40px 50px;
+        background: var(--cardBG);
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.desContent .desc{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.desContent .desc h3{
+color: var(--PrimaryColor);
+
+}
+
+.desContent .desc .description{
+    width: 60%;
+    font-family: "Poppins", sans-serif;
+    font-size: 18px;
+    text-align: justify;
+  text-justify: inter-word;
+}
+.desContent .desc .descImg1{
+    width: 400px;
+    height: 600px;
+}
+
+.desContent .desc .descImg2{
+    width: 512pxs;
+    height: 330px;
+}
+
+.desContent .desc .descImg3{
+    width: 320px;
+        height: 600px;
+}
+
+.desContent .desc .descImg4{
+    width: 600px;
+    height: 540px;
+}
+
+@media screen and (min-width: 500px) {
+    header {
+       
+        height: 60vh;
+    
+    }
+    header nav .Logo .logo_img {
+        width: 3.3rem;
+        height: 3.2rem;
+    }
+
+    header nav .Logo h2{
+        font-size: 13px;
+    }
+
+    
+    header .content h1 {
+        font-size: 26px;
+       
+    }
+    header .content h2 {
+        font-size: 15px;
+        
+    }
+
+    header .content button {
+       
+        font-size: 14px;
+        
+    }
+    .secTitle {
+        margin-top: 40px;
+        width: 90%;
+    }
+    .secTitle h1::after {
+        width: 155px !important;
+    }
+
+    .secTitle h1 {
+
+        font-size: 28px;
+
+    }
+
+
+    .secTitle p {
+
+        font-size: 18px;
+
+    }
+
+    .secContent {
+        margin-top: 30px;
+        grid-template-columns: repeat(1, 1fr);
+
+    }
+
+    .secContent .singleDestination {
+        height: auto;
+    }
+
+    .btn {
+        font-size: 14px;
+        background: var(--gradientColor);
+        padding: 8px 22px;
+        text-transform: uppercase;
+        border-radius: 25px;
+        transition: .5s;
+        cursor: pointer;
+    }
+
+
+    .desContent{
+    border: 1 solid #000;
+        margin: 30px auto;
+        padding: 20px 20px;
+    }
+    
+    .desContent .desc{
+        margin-top: 20px;
+    }
+    
+    .desContent .desc h3{
+    color: var(--PrimaryColor);
+    
+    }
+    
+    .desContent .desc .description{
+        width: 50%;
+        font-size: 10px;
+        
+    }
+    .desContent .desc .descImg1{
+        width: 200px;
+        height: 350px;
+    }
+    
+    .desContent .desc .descImg2{
+        width: 300px;
+        height: 180px;
+    }
+    
+    .desContent .desc .descImg3{
+        width: 180px;
+        height: 320px;
+        
+    }
+
+    .desContent .desc .descImg4{
+        width: 280px;
+        height: 290px;
+    }
+}
+
+@media screen and (min-width: 600px) {
+    header {
+       
+        height: 60vh;
+    
+    }
+    header nav .Logo h2{
+        font-size: 15px;
+    }
+    .secContent {
+        margin-top: 35px;
+        grid-template-columns: repeat(2, 1fr);
+
+
+    }
+}
+
+
+@media screen and (min-width: 840px) {
+
+    header nav .Logo h2{
+        font-size: 18px;
+    }
+    header {
+       
+        height: 70vh;
+    
+    }
+    header nav .Logo .logo_img {
+        width: 4.2rem;
+        height: 4.2rem;
+    }
+
+    
+    header .content h1 {
+        font-size: 28px;
+       
+    }
+    header .content h2 {
+        font-size: 18px;
+        
+    }
+    header .content button {
+       
+        font-size: 16px;
+        
+    }
+    .secTitle {
+        margin-top: 60px;
+        width: 80%;
+    }
+
+    .secTitle h1 {
+
+        font-size: 30px;
+
+    }
+
+
+    .secTitle p {
+
+        font-size: 20px;
+
+    }
+    .secContent {
+        margin-top: 40px;
+        grid-template-columns: repeat(2, 1fr);
+
+
+    }
+
+    .secContent .singleDestination {
+        height: auto;
+    }
+
+    .desContent{
+    
+        margin: 30px auto;
+        padding: 20px 20px;
+    }
+    
+    .desContent .desc{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .desContent .desc h3{
+    color: var(--PrimaryColor);
+    
+    }
+    
+    .desContent .desc .description{
+        width: 50%;
+        font-family: "Poppins", sans-serif;
+        font-size: 13px;
+        text-align: justify;
+      text-justify: inter-word;
+    }
+    .desContent .desc .descImg1{
+        width: 200px;
+        height: 350px;
+    }
+    
+    .desContent .desc .descImg2{
+        width: 320px;
+        height: 200px;
+    }
+    
+    .desContent .desc .descImg3{
+        width: 200px;
+        height: 350px;
+    }
+
+    .desContent .desc .descImg4{
+        width: 350px;
+        height: 360px;
+    }
+}
+
+
+@media screen and (min-width: 1200px) {
+    header {
+       
+        height: 80vh;
+    
+    }
+
+    
+    header .content h1 {
+        font-size: 40px;
+       
+    }
+    .secContent {
+        margin-top: 50px;
+
+        grid-template-columns: repeat(4, 1fr);
+
+
+    }
+    .desContent{
+        
+        margin: 40px auto;
+        padding: 40px 50px;
+        background: var(--cardBG);
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+    
+    .desContent .desc{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .desContent .desc h3{
+    color: var(--PrimaryColor);
+    
+    }
+    
+    .desContent .desc .description{
+        width: 60%;
+        font-family: "Poppins", sans-serif;
+        font-size: 18px;
+        text-align: justify;
+      text-justify: inter-word;
+    }
+    .desContent .desc .descImg1{
+        width: 400px;
+        height: 600px;
+    }
+    
+    .desContent .desc .descImg2{
+        width: 512px;
+        height: 330px;
+    }
+    
+    .desContent .desc .descImg3{
+        width: 320px;
+        height: 600px;
+    }
+    .desContent .desc .descImg4{
+        width: 600px;
+        height: 540px;
+    }
+}
+
+@media screen and (max-width: 960px) {
+    header nav ul{
+        position: absolute;
+        width: 230px;
+        height: auto;
+        flex-direction: column;
+        background: #fff;
+        border-radius: 5px;
+        box-shadow: 0px 0px 10px gray;
+        justify-content: center;
+        top: -100%;
+        right: 0%;
+        z-index: 9999999999999999;
+        padding: 10px 20px;
+        transition: 0.4s linear;
+        margin-top: 20px;
+    }
+
+    header nav ul li{
+        padding: 8px 0px;
+        text-align: center;
+    }
+    /* Javascript class */
+    header nav .ul_active {
+        top: 0;
+    }
+
+    header nav #apps {
+        display: unset;
+        cursor: pointer;
+    }
+
+}
+
+@media screen and (max-width: 650px) {
+    header nav ul{
+        width: 170px;
+        
+    }
+    header nav ul li a {
+        font-size: 13px;
+        font-weight: 600;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    header nav ul{
+        width: 150px;
+        
+    }
+    header nav ul li a {
+        font-size: 11px;
+       
+    }
+}
+
