@@ -6,20 +6,20 @@
     box-sizing: border-box;
 } */
 :root {
-    --PrimaryColor: hsl(199, 100%, 33%);
-    --SecondaryColor: hsl(187, 85%, 43%);
-    --gradientColor: linear-gradient(to right,
-            hsl(187, 85%, 43%),
-            hsl(199, 100%, 33%));
+  --PrimaryColor: hsl(199, 100%, 33%);
+  --SecondaryColor: hsl(187, 85%, 43%);
+  --gradientColor: linear-gradient(to right,
+      hsl(187, 85%, 43%),
+      hsl(199, 100%, 33%));
 
-    --whiteColor: hsl(0, 0%, 100%);
-    --blackColor: hsl(201, 33%, 16%);
-    --textColor: hsl(240, 4%, 36%);
-    --whiteColorDeam: hsl(0, 0%, 93%);
-    --greyText: rgb(190, 190, 190);
-    --inputColor: rgb(239, 239, 239);
-    --bodyColor: rgb(240, 240, 246);
-    --cardBG: rgb(225, 225, 235);
+  --whiteColor: hsl(0, 0%, 100%);
+  --blackColor: hsl(201, 33%, 16%);
+  --textColor: hsl(240, 4%, 36%);
+  --whiteColorDeam: hsl(0, 0%, 93%);
+  --greyText: rgb(190, 190, 190);
+  --inputColor: rgb(239, 239, 239);
+  --bodyColor: rgb(240, 240, 246);
+  --cardBG: rgb(225, 225, 235);
 }
 
 * {
@@ -32,57 +32,61 @@
 
 /* Track */
 ::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 5px grey; 
+  box-shadow: inset 0 0 5px grey;
   border-radius: 10px;
 }
- 
+
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #888;  
+  background: #888;
   border-radius: 5px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;  
+  background: #555;
 }
 
 .column {
   float: left;
   padding: 10px;
-  height: 100%; /* Should be removed. Only for demonstration */
+  height: 100%;
+  /* Should be removed. Only for demonstration */
   width: 100%;
 }
+
 .left {
   width: 30%;
   height: 100%;
 }
+
 .right {
   width: 70%;
   padding: 10px;
   margin-top: 5px;
   height: 1000px;
   border: 4px solid rgb(0, 0, 0);
-  
+
 }
-body, html {
+
+body,
+html {
   margin: 0;
   font-family: "Poppins", sans-serif;
   overflow-x: hidden;
   height: 100%;
-  background-image: linear-gradient(
-    to top right,
-    #80cbc4,
-    #e1bee7,
-    #80ddea,
-    #d1c4e9
-  );
-  
+  background-image: linear-gradient(to top right,
+      #80cbc4,
+      #e1bee7,
+      #80ddea,
+      #d1c4e9);
+
 }
 
 #style_Legend {
   display: none;
 }
+
 .class_Legend {
   position: absolute;
   padding: 5px;
@@ -104,7 +108,7 @@ body, html {
 header {
   width: 100%;
   height: 80vh;
-  
+
   margin: auto;
 
 }
@@ -117,7 +121,7 @@ header .headerNav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  
+
 }
 
 header .headerNav .Logo {
@@ -166,7 +170,7 @@ header .bgImage {
   color: var(--whiteColorDeam);
   width: 100%;
   height: 88%;
-  
+
   background-image: url('../images/bihar1.jpg');
   background-repeat: no-repeat;
   background-size: cover;
@@ -179,7 +183,7 @@ header .bgImage::before {
   color: var(--whiteColorDeam);
   width: 100%;
   height: 88%;
-  
+
   background-image: url('../images/bihar1.jpg');
   background-repeat: no-repeat;
   background-size: cover;
@@ -190,35 +194,35 @@ header .bgImage::before {
 
 @keyframes bgChange {
   0% {
-      background-image: url('../images/bihar1.jpg');
+    background-image: url('../images/bihar1.jpg');
   }
 
   20% {
-      background-image: url('../images/bihar1.jpg');
+    background-image: url('../images/bihar1.jpg');
   }
 
   25% {
-      background-image: url('../images/Bihar2.jpg');
+    background-image: url('../images/Bihar2.jpg');
   }
 
   45% {
-      background-image: url('../images/Bihar2.jpg');
+    background-image: url('../images/Bihar2.jpg');
   }
 
   50% {
-      background-image: url('../images/Bihar3.jpg');
+    background-image: url('../images/Bihar3.jpg');
   }
 
   70% {
-      background-image: url('../images/Bihar3.jpg');
+    background-image: url('../images/Bihar3.jpg');
   }
 
   75% {
-      background-image: url('../images/bihar4.webp');
+    background-image: url('../images/bihar4.webp');
   }
 
   95% {
-      background-image: url('../images/bihar4.webp');
+    background-image: url('../images/bihar4.webp');
   }
 }
 
@@ -287,7 +291,7 @@ header .content button:hover {
 nav {
   width: 290px;
   height: 950px;
-   position: sticky; 
+  position: sticky;
   z-index: 1;
   top: 80px;
   bottom: 0;
@@ -295,7 +299,7 @@ nav {
   background: rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   box-shadow: 5px 7px 10px rgba(0, 0, 0, 0.5);
-  
+
 
 }
 
@@ -346,30 +350,22 @@ nav ul .dropdown {
   position: relative;
 }
 
-nav ul .dropdown:hover > ul {
+nav ul .dropdown:hover>ul {
   display: initial;
-  
+
 }
 
 nav ul .dropdown2 {
   position: relative;
 }
 
-nav ul .dropdown2:hover > ul {
+nav ul .dropdown2:hover>ul {
   display: initial;
   left: 160px;
 
 }
 
-nav ul #surface:hover > ul {
-  display: initial;
-  left: 160px;
-  height: 450px;
-  overflow-y: scroll;
-  overflow-x: hidden;
-}
-
-nav ul #sub_surface:hover > ul {
+nav ul #surface:hover>ul {
   display: initial;
   left: 160px;
   height: 450px;
@@ -377,7 +373,15 @@ nav ul #sub_surface:hover > ul {
   overflow-x: hidden;
 }
 
-nav ul ul .dropdown3 > ul {
+nav ul #sub_surface:hover>ul {
+  display: initial;
+  left: 160px;
+  height: 450px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+nav ul ul .dropdown3>ul {
   position: absolute;
   left: 200px;
 }
@@ -411,11 +415,12 @@ nav .table .td {
   border-radius: 0 30px;
   width: auto;
 }
+
 nav .table .td input {
   margin-right: 5px;
 }
 
-nav .table  a {
+nav .table a {
   display: flex;
   align-items: center;
   font-family: Arial;
@@ -431,7 +436,7 @@ nav .table  a {
   width: auto;
 }
 
-nav ul .dropdown:hover > .table {
+nav ul .dropdown:hover>.table {
   display: initial;
 }
 
@@ -439,7 +444,7 @@ nav table .dropdown2 {
   position: relative;
 }
 
-nav table .dropdown2:hover > table {
+nav table .dropdown2:hover>table {
   display: initial;
   left: 196px;
   margin-top: -200px;
@@ -449,10 +454,10 @@ nav table .dropdown2:hover > table {
 
 nav table table .dropdown3 {
   position: relative;
-  
+
 }
 
-nav table .dropdown3:hover > table  {
+nav table .dropdown3:hover>table {
   display: initial;
   left: 196px;
 }
@@ -484,11 +489,12 @@ nav table .dropdown3:hover > table  {
   border-radius: 10px;
   border: 1px solid #d1d1d1;
 }
+
 .attQueryDiv {
   position: absolute;
-  margin: 50px auto auto 10px;
+  margin: -340px auto auto 5px;
   /* padding: 10px; */
-  width: 250px;
+  width: 520px;
   /* height: 250px; */
   background-color: rgb(255, 255, 255, 0.9);
   font-family: inherit;
@@ -508,20 +514,39 @@ overflow: scroll; */
   align-content: center;
   background-color: midnightblue;
   height: 35px;
-  
- 
+  justify-content: space-between;
+  align-items: center;
 }
 
 #queryHeaderDiv label {
   color: white;
+  width: 90%;
+  text-align: center;
 }
+
+.material-symbols-outlined{
+  text-align: center;
+  color: #fffefe;
+  width: 8%;
+  cursor: pointer;
+}
+
+.queryItems {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 10px 10px 0px;
+
+}
+
 .attQueryDiv select {
   width: 225px;
   height: 35px;
   border: 1px solid lightgray;
   border-radius: 3px;
-  margin: 0px auto 0px 10px;
+  margin: 0px 0px 0px 10px;
 }
+
 .attQueryDiv input {
   width: 225px;
   height: 35px;
@@ -542,6 +567,33 @@ overflow: scroll; */
   font-weight: bold;
 }
 
+.attQryAdd {
+  color: white;
+  background-color: midnightblue;
+  border-radius: 3px;
+  border: 1px solid midnightblue;
+  height: 25px;
+  width: 50px;
+  cursor: pointer;
+  margin: auto 5px auto 5px;
+}
+
+.conditions {
+  background-color: rgb(253, 248, 241);
+  height: 200px;
+  font-size: 13px;
+  padding: 5px;
+  text-align: center;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  overflow-y: scroll;
+}
+
+.runAndclear{
+  display: flex; 
+  gap: 120px; 
+  margin: 10px 0px 10px 0px;
+}
+
 .attQryRun {
   color: white;
   background-color: green;
@@ -549,8 +601,6 @@ overflow: scroll; */
   border: 1px solid darkgreen;
   height: 35px;
   width: 50px;
-  margin: 15px;
-  margin-top: 5px;
   cursor: pointer;
 }
 
@@ -561,8 +611,6 @@ overflow: scroll; */
   border: 1px solid rgb(236, 98, 18);
   height: 35px;
   width: 50px;
-  margin: 5px;
-  margin-left: 100px;
   cursor: pointer;
 }
 
@@ -578,9 +626,10 @@ overflow: scroll; */
   border: 1px solid #d1d1d1;
   box-shadow: 0px 0px 15px rgba(252 213, 213, 0.5);
   display: none;
-  
+
 }
-.selectBoxes{
+
+.selectBoxes {
   display: flex;
 }
 
@@ -592,6 +641,7 @@ overflow: scroll; */
   border-radius: 3px;
   margin: 0px auto 0px 10px;
 }
+
 .multiAttQueryDiv input {
   width: 225px;
   height: 35px;
@@ -612,12 +662,13 @@ overflow: scroll; */
   font-weight: bold;
 }
 
-.smallButtons{
-display: flex;
-justify-content: center;
-gap: 100px;
-margin-bottom: 8px;
+.smallButtons {
+  display: flex;
+  justify-content: center;
+  gap: 100px;
+  margin-bottom: 8px;
 }
+
 .attQryRun2 {
   color: white;
   background-color: green;
@@ -625,7 +676,7 @@ margin-bottom: 8px;
   border: 1px solid darkgreen;
   height: 35px;
   width: 50px;
-  
+
 }
 
 
@@ -636,79 +687,86 @@ margin-bottom: 8px;
   border: 1px solid rgb(236, 98, 18);
   height: 35px;
   width: 50px;
-  
- 
+
+
 }
 
 
- 
+
 @media only screen and (max-width: 1380px) {
- 
-  .headerTextDiv{
-   font-size: 28px;
-   height: 216px;
-  
-   
+
+  .headerTextDiv {
+    font-size: 28px;
+    height: 216px;
+
+
   }
 
-  
-  
-  }
 
-  @media only screen and (max-width: 1280px) {
-    .headerDiv{
-   
-      top: -32px;
-      
-     
-    }
-    .headerTextDiv{
-     font-size: 25px;
-     height: 216px;
-    
-    }
-    }
-@media only screen and (max-width: 1120px) {
-  .headerDiv{
-   
+
+}
+
+@media only screen and (max-width: 1280px) {
+  .headerDiv {
+
     top: -32px;
-    
-   
+
+
   }
-  .headerTextDiv{
-    
-   font-size: 23px;
-   height: 216px;
-  
-  }
-  
-  
-  .headerTextDiv .span1{
-   
+
+  .headerTextDiv {
     font-size: 25px;
-    
+    height: 216px;
+
   }
-  .headerTextDiv .span2{
+}
+
+@media only screen and (max-width: 1120px) {
+  .headerDiv {
+
+    top: -32px;
+
+
+  }
+
+  .headerTextDiv {
+
+    font-size: 23px;
+    height: 216px;
+
+  }
+
+
+  .headerTextDiv .span1 {
+
+    font-size: 25px;
+
+  }
+
+  .headerTextDiv .span2 {
     font-size: 20px;
-   
+
   }
 
   .right {
-    
+
     height: 900px;
-    
-    
+
+
   }
+
   nav {
     width: 200px;
-    height: 850px;
+    height: 870px;
     top: 161px;
   }
+
   #nav-button {
     display: block;
     background: none;
     border: none;
   }
+
   nav ul ul {
     left: 161px;
     width: 150px;
@@ -731,47 +789,48 @@ margin-bottom: 8px;
     height: 30px;
   }
 
-  nav ul .dropdown2:hover > ul {
+  nav ul .dropdown2:hover>ul {
     display: initial;
     left: 111px;
-  }
-  nav ul #surface:hover > ul {
-    display: initial;
-    left: 111px;
-    
-  }
-  
-  nav ul #sub_surface:hover > ul {
-    display: initial;
-    left: 111px;
-    
   }
 
-  nav .table  a {
-    
+  nav ul #surface:hover>ul {
+    display: initial;
+    left: 111px;
+
+  }
+
+  nav ul #sub_surface:hover>ul {
+    display: initial;
+    left: 111px;
+
+  }
+
+  nav .table a {
+
     font-size: 0.8em;
-    
+
   }
 
-  nav table .dropdown2:hover > table {
+  nav table .dropdown2:hover>table {
     display: initial;
     left: 148px;
-    
+
   }
-  
- 
-  
-  nav table .dropdown3:hover > table  {
+
+
+
+  nav table .dropdown3:hover>table {
     display: initial;
     left: 148px;
   }
-  
+
 
   nav ul ul li {
     height: 46px;
   }
 
-  nav ul ul .dropdown3 > ul {
+  nav ul ul .dropdown3>ul {
     left: 0px;
     margin-top: 43px;
   }
@@ -786,50 +845,60 @@ margin-bottom: 8px;
   }
 
   .attQueryDiv {
-    margin: 10px auto auto 120px;
-  
-    width: 225px;
+    margin: -340px auto auto 0px;
+
+    width: 420px;
     font-size: 0.8em;
   }
-  
+  .attQryAdd {
+    font-size: 11px;
+    height: 25px;
+    width: 35px;
+   
+  }
+
   .attQueryDiv select {
-    width: 200px;
+    width: 170px;
     height: 25px;
   }
-  
+
+  .runAndclear{
+    display: flex; 
+    gap: 120px; 
+    margin: 10px 0px 10px 0px;
+  }
+
   .attQryRun {
     font-size: 11px;
     height: 25px;
     width: 35px;
-    margin: 10px;
+    
   }
-  
+
   .attQryClear {
     font-size: 11px;
     height: 25px;
     width: 38px;
-    margin: 10px;
-  
-    margin-left: 113px;
   }
-  
+
   .multiAttQueryDiv {
     margin: 10px auto auto 10px;
     width: 390px;
     height: 230px;
     font-size: 0.8em;
   }
-  
+
   .multiAttQueryDiv label {
     font-size: 10px;
-   
+
   }
+
   .multiAttQueryDiv select {
     width: 90px;
     height: 25px;
     font-size: 10px;
   }
-  
+
   .attQryRun2 {
     font-size: 11px;
     height: 25px;
@@ -837,7 +906,7 @@ margin-bottom: 8px;
     margin: 10px;
     margin-top: -14px;
   }
-  
+
   .attQryClear2 {
     font-size: 11px;
     height: 25px;
@@ -846,61 +915,73 @@ margin-bottom: 8px;
     margin-top: -14px;
     margin-left: 113px;
   }
+  .runAndclear{
+    
+    margin: 10px 0px 0px 0px;
+  }
 }
 
 @media only screen and (max-width: 1000px) {
-  .headerDiv{
-   
+  .headerDiv {
+
     top: -28px;
-    
-   
+
+
   }
-  .headerTextDiv{
-    
-   font-size: 20px;
-   height: 216px;
-   
-  }}
+
+  .headerTextDiv {
+
+    font-size: 20px;
+    height: 216px;
+
+  }
+
+}
 
 
 @media only screen and (max-width: 860px) {
-  .headerDiv{
-   
+  .headerDiv {
+
     top: -20px;
-    
-   
+
+
   }
+
   .class_Legend {
     max-width: 180px;
     max-height: 200px;
-    
+
   }
-  .headerTextDiv{
-    
+
+  .headerTextDiv {
+
     font-size: 18px;
     height: 203px;
     top: -20px;
-   }
-   
-   
-   .headerTextDiv .span1{
-    
-     font-size: 20px;
-     
-   }
-   .headerTextDiv .span2{
-     font-size: 15px;
-    
-   }
+  }
 
-   marquee{
+
+  .headerTextDiv .span1 {
+
+    font-size: 20px;
+
+  }
+
+  .headerTextDiv .span2 {
+    font-size: 15px;
+
+  }
+
+  marquee {
     font-size: 12px;
     padding: 2px;
   }
+
   nav {
     width: 135px;
+    height: 870px;
   }
-
+  
   nav ul ul {
     left: 96px;
     width: 150px;
@@ -920,199 +1001,223 @@ margin-bottom: 8px;
   .Demo_Layers {
     margin-left: 5px;
   }
+  #queryButton{
+    font-size: 11px;
+  }
 }
+
 @media only screen and (max-width: 800px) {
 
-  .headerTextDiv{
-    
-   font-size: 16px;
-   height: 216px;
-   margin-left: 12px;
-   margin-right:12px;
-   
+  .headerTextDiv {
+
+    font-size: 16px;
+    height: 216px;
+    margin-left: 12px;
+    margin-right: 12px;
+
   }
 
-.logo{
-  height: 60px; 
-  width: 60px;
-}}
-  @media only screen and (max-width: 760px) {
+  .logo {
+    height: 60px;
+    width: 60px;
+  }
+}
 
-    .headerTextDiv{
-      
-     font-size: 14px;
-     height: 216px;
-     
-    }}
+@media only screen and (max-width: 760px) {
+
+  .headerTextDiv {
+
+    font-size: 14px;
+    height: 216px;
+
+  }
+  .attQueryDiv {
+    margin: -320px auto auto 5px;
+
+  }
+}
+
 @media only screen and (max-width: 650px) {
 
 
-  
-  .headerTextDiv{
-    
+
+  .headerTextDiv {
+
     font-size: 12px;
-    
+
     top: -19px;
-   }
-   
-   
-   .headerTextDiv .span1{
-    
-     font-size: 15px;
-     
-   }
-   .headerTextDiv .span2{
-     font-size: 12px;
-    
-   }
   }
 
-  @media only screen and (max-width: 610px) {
 
-    .headerTextDiv{
-      
-     font-size: 10px;
-     
-     
-    }}
+  .headerTextDiv .span1 {
 
-    @media screen and (min-width: 500px) {
-      header {
-         
-          height: 40vh;
-      
-      }
-      header .headerNav .Logo .logo_img {
-          width: 2.5rem;
-          height: 2.5rem;
-      }
-  
-      header .headerNav .Logo h2{
-          font-size: 13px;
-      }
-      
-      header .content h1 {
-          font-size: 26px;
-         
-      }
-      header .content h2 {
-          font-size: 15px;
-          
-      }
-  
-      header .content button {
-         
-          font-size: 14px;
-          
-      }
-    }
+    font-size: 15px;
 
-    @media screen and (min-width: 600px) {
-      header {
-         
-          height: 50vh;
-      
-      }
-      header .headerNav .Logo h2{
-          font-size: 15px;
-      }
-    }
-
-    @media screen and (min-width: 840px) {
-
-      header .headerNav .Logo h2{
-          font-size: 18px;
-      }
-      header {
-         
-          height: 60vh;
-      
-      }
-      header .headerNav .Logo .logo_img {
-          width: 4.2rem;
-          height: 4.2rem;
-      }
-      header .content h1 {
-          font-size: 28px;
-         
-      }
-      header .content h2 {
-          font-size: 18px;
-          
-      }
-      header .content button {
-         
-          font-size: 16px;
-          
-      }
-    }
-
-    @media screen and (min-width: 1200px) {
-      header {
-         
-          height: 75vh;
-      
-      }
-      header .content h1 {
-          font-size: 40px;
-         
-      }
-    }
-
-    @media screen and (max-width: 960px) {
-      header .headerNav ul{
-          position: absolute;
-          width: 230px;
-          height: auto;
-          flex-direction: column;
-          background: #fff;
-          border-radius: 5px;
-          box-shadow: 0px 0px 10px gray;
-          justify-content: center;
-          top: -100%;
-          right: 0%;
-          z-index: 9999999999999999;
-          padding: 10px 20px;
-          transition: 0.4s linear;
-          margin-top: 20px;
-      }
-  
-      header .headerNav ul li{
-          padding: 8px 0px;
-          text-align: center;
-      }
-      /* Javascript class */
-      header .headerNav .ul_active {
-          top: 0;
-      }
-  
-      header .headerNav #apps {
-          display: unset;
-          cursor: pointer;
-      }
-  
   }
-  
-  @media screen and (max-width: 650px) {
-      header .headerNav ul{
-          width: 170px;
-          
-      }
-      header .headerNav ul li a {
-          font-size: 13px;
-          font-weight: 600;
-      }
+
+  .headerTextDiv .span2 {
+    font-size: 12px;
+
   }
-  
-  @media screen and (max-width: 650px) {
-      header .headerNav ul{
-          width: 150px;
-          
-      }
-      header .headerNav ul li a {
-          font-size: 11px;
-         
-      }
+}
+
+@media only screen and (max-width: 610px) {
+
+  .headerTextDiv {
+
+    font-size: 10px;
+
+
   }
-  
-  
+}
+
+@media screen and (min-width: 500px) {
+  header {
+
+    height: 40vh;
+
+  }
+
+  header .headerNav .Logo .logo_img {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  header .headerNav .Logo h2 {
+    font-size: 13px;
+  }
+
+  header .content h1 {
+    font-size: 26px;
+
+  }
+
+  header .content h2 {
+    font-size: 15px;
+
+  }
+
+  header .content button {
+
+    font-size: 14px;
+
+  }
+}
+
+@media screen and (min-width: 600px) {
+  header {
+
+    height: 50vh;
+
+  }
+
+  header .headerNav .Logo h2 {
+    font-size: 15px;
+  }
+}
+
+@media screen and (min-width: 840px) {
+
+  header .headerNav .Logo h2 {
+    font-size: 18px;
+  }
+
+  header {
+
+    height: 60vh;
+
+  }
+
+  header .headerNav .Logo .logo_img {
+    width: 4.2rem;
+    height: 4.2rem;
+  }
+
+  header .content h1 {
+    font-size: 28px;
+
+  }
+
+  header .content h2 {
+    font-size: 18px;
+
+  }
+
+  header .content button {
+
+    font-size: 16px;
+
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  header {
+
+    height: 75vh;
+
+  }
+
+  header .content h1 {
+    font-size: 40px;
+
+  }
+}
+
+@media screen and (max-width: 960px) {
+  header .headerNav ul {
+    position: absolute;
+    width: 230px;
+    height: auto;
+    flex-direction: column;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px gray;
+    justify-content: center;
+    top: -100%;
+    right: 0%;
+    z-index: 9999999999999999;
+    padding: 10px 20px;
+    transition: 0.4s linear;
+    margin-top: 20px;
+  }
+
+  header .headerNav ul li {
+    padding: 8px 0px;
+    text-align: center;
+  }
+
+  /* Javascript class */
+  header .headerNav .ul_active {
+    top: 0;
+  }
+
+  header .headerNav #apps {
+    display: unset;
+    cursor: pointer;
+  }
+
+}
+
+@media screen and (max-width: 650px) {
+  header .headerNav ul {
+    width: 170px;
+
+  }
+
+  header .headerNav ul li a {
+    font-size: 13px;
+    font-weight: 600;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  header .headerNav ul {
+    width: 150px;
+
+  }
+
+  header .headerNav ul li a {
+    font-size: 11px;
+
+  }
+}
