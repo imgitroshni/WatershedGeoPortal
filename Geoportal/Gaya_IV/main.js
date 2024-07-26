@@ -1038,9 +1038,7 @@ let layerOption = [
   "Base Map",
   "Soil",
   "Suitability",
-  "Hydrology",
-  "Soil Water Conservation",
-  "Ground Water Potential",
+  "Hydrology"
 ]
 
 
@@ -1048,7 +1046,7 @@ let layerOption = [
 
 let basemapAttibute = [
 
-  "Broad Landform",
+  "BroadLandf",
   "Landform",
   "Landuse",
   "Slope",
@@ -1056,47 +1054,29 @@ let basemapAttibute = [
 ];
 
 let soilAttibute = [
-  "Soil Map",
-  "Soil Depth",
-  "Soil Erosion",
-  "Soil Drainage",
-  "Surface Texture",
-  "Land Capability",
+  "SoilLegend",
+  "SoilDepth",
+  "Erosion",
+  "Drainage",
+  "SurfacText",
+  "Landcapabi",
 ];
 
 let suitabilityAttribute = [
   "Arhar",
   "Horsegram",
-  "Kharif Maize",
-  "Kharif Paddy",
+  "KharifMaiz",
+  "KharifPadd",
   "Lentil",
   "Potato",
   "Sesame",
-  "Summer Paddy",
+  "SummerPadd",
   "Wheat",
   "Vegetables",
 ];
 
-let surfaceAttribute = [
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-];
 
-let hydrologyAttribute = [];
+let hydrologyAttribute = ["Soil Water Conservation"];
 
 
 //VALUES ARRAYS
@@ -1571,28 +1551,28 @@ const attributeMapping = {
   "Base Map": basemapAttibute,
   "Soil": soilAttibute,
   "Suitability": suitabilityAttribute,
-  "Surface": surfaceAttribute,
+  "Hydrology": hydrologyAttribute
 };
 const valueMapping = {
-  "Broad Landform": broadLandformLegends,
+  "BroadLandf": broadLandformLegends,
   "Landform": landFormLegends,
   "Landuse": landUseLegends,
   "Slope": slopeLegends,
   "TMU": tmuLegends,
-  "Soil Map": soilMapLegends,
-  "Soil Depth": soilDepthLegends,
-  "Soil Erosion": soilErosionLegends,
-  "Soil Drainage": soilDrainageLegends,
-  "Surface Texture": surfaceTextureLegends,
-  "Land Capability": landCapabilityLegends,
+  "SoilLegend": soilMapLegends,
+  "SoilDepth": soilDepthLegends,
+  "Erosion": soilErosionLegends,
+  "Drainage": soilDrainageLegends,
+  "SurfacText": surfaceTextureLegends,
+  "Landcapabi": landCapabilityLegends,
   "Arhar": ArharLegends,
   "Horsegram": HorsegramLegends,
-  "Kharif Maize": KharifMaizeLegends,
-  "Kharif Paddy": KharifPaddyLegends,
+  "KharifMaiz": KharifMaizeLegends,
+  "KharifPadd": KharifPaddyLegends,
   "Lentil": LentilLegends,
   "Potato": PotatoLegends,
   "Sesame": SesameLegends,
-  "Summer Paddy": SummerPaddyLegends,
+  "SummerPadd": SummerPaddyLegends,
   "Wheat": WheatLegends,
   "Vegetables": VegetablesLegends
 };
@@ -1600,11 +1580,11 @@ const valueMapping = {
 layerOption.forEach(item => addOption(selectLayer, item));
 
 selectLayer.onchange = function () {
-  updateSelectOptions(selectAttribute, "Select Layer", attributeMapping[this.value]);
+  updateSelectOptions(selectAttribute, "Select Attribute", attributeMapping[this.value]);
 };
 
 selectAttribute.onchange = function () {
-  updateSelectOptions(selectValue, "Select Layer", valueMapping[this.value]);
+  updateSelectOptions(selectValue, "Select Value", valueMapping[this.value]);
 };
 
 function addOption(select, item) {
@@ -1689,7 +1669,126 @@ function updateMapSuitability(cqlFilter) {
   myFunctionLigendSuitability();
 }
 
+
+let conditions = [];
+let operators = [];
+
+function addCondition() {
+    const attribute = document.getElementById('selectAttribute').value;
+    const value = document.getElementById('selectValue').value;
+    const operator = document.getElementById('selectOperator').value;
+
+    if (conditions.length > 0) {
+        operators.push(operator);
+    }
+
+    conditions.push(`${attribute}='${value}'`);
+    updateConditionsDisplay();
+}
+
+function updateConditionsDisplay() {
+    const conditionsDiv = document.getElementById('conditions');
+    let displayText = conditions.length > 0 ? conditions[0] : '';
+
+    for (let i = 1; i < conditions.length; i++) {
+        displayText += ` ${operators[i - 1]} ${conditions[i]}`;
+    }
+
+    conditionsDiv.innerHTML = displayText;
+}
+
+function evaluateConditions() {
+    if (conditions.length === 0) return '';
+
+    let result = conditions[0];
+
+    for (let i = 1; i < conditions.length; i++) {
+        result += ` ${operators[i - 1]} ${conditions[i]}`;
+    }
+
+    return result;
+}
+
 function singleQueryRun() {
+  if (conditions.length === 0) {
+    alert('Please add at least one condition.');
+    return;
+  }
+
+  const evaluatedConditions = evaluateConditions();
+  const layerSelected = selectLayer.value;
+
+  switch (layerSelected) {
+    case "Base Map":
+      updateMapBaseMap(evaluatedConditions);
+      break;
+    case "Soil":
+      updateMapSoil(evaluatedConditions);
+      break;
+    case "Suitability":
+      updateMapSuitability(evaluatedConditions);
+      break;
+
+  }
+}
+
+// Clear Layers Function
+function clearLayers() {
+  // Clear the existing layers from the map
+  map.getLayers().forEach(layer => {
+    if (layer.get("name") === "Gaya_2_4_BaseMap") {
+      map.removeLayer(layer);
+    }
+  });
+
+}
+
+function closeAttQueryDiv() {
+  document.getElementById("attQueryDiv").style.display = "none";
+}
+
+/* function addCondition() {
+  const attribute = document.getElementById('selectAttribute').value;
+  const value = document.getElementById('selectValue').value;
+  const operator = document.getElementById('selectOperator').value;
+
+  if (conditions.length > 0) {
+    operators.push(operator);
+  }
+  
+  conditions.push(`${attribute}='${value}'`);
+  updateConditionsDisplay();
+}
+
+function updateConditionsDisplay() {
+  const value = document.getElementById('selectValue').value;
+  const conditionsDiv = document.getElementById('conditions');
+  let displayText = conditions.length > 0 ? conditions[0] : '';
+
+  for (let i = 1; i < conditions.length; i++) {
+    displayText += ` ${operators[i-1]} ${conditions[i]}`;
+  }
+  
+  conditionsDiv.innerHTML = displayText;
+}
+
+function evaluateConditions() { 
+  if (conditions.length === 0) return '';
+
+  let result = conditions[0];
+
+  for (let i = 1; i < conditions.length; i++) {
+    result += ` ${operators[i-1]} ${value}`;
+  }
+
+  return result;
+}
+
+function singleQueryRun() {
+  if (conditions.length === 0) {
+    alert('Please add at least one condition.');
+    return;
+  }
   const attribute = selectAttribute.value;
   const value = selectValue.value;
 
@@ -1758,7 +1857,137 @@ function singleQueryRun() {
       updateMapSuitability(`Vegetables='${value}'`);
       break;
   }
+} */
+/* let conditions = [];
+let operators = [];
+
+function addCondition() {
+  const attribute = document.getElementById('selectAttribute').value;
+  const value = document.getElementById('selectValue').value;
+  const operator = document.getElementById('selectOperator').value;
+
+  if (conditions.length > 0) {
+    operators.push(operator);
+  }
+  
+  conditions.push(`${attribute}='${value}'`);
+  updateConditionsDisplay();
 }
+
+function updateConditionsDisplay() {
+  const value = document.getElementById('selectValue').value;
+  const conditionsDiv = document.getElementById('conditions');
+  let displayText = conditions.length > 0 ? conditions[0] : '';
+
+  for (let i = 1; i < conditions.length; i++) {
+    displayText += ` ${operators[i-1]} ${conditions[i]}`;
+  }
+  
+  conditionsDiv.innerHTML = displayText;
+}
+
+function evaluateConditions() { 
+  if (conditions.length === 0) return '';
+
+  let result = conditions[0];
+
+  for (let i = 1; i < conditions.length; i++) {
+    result += ` ${operators[i-1]} ${value}`;
+  }
+
+  return result;
+}
+
+function singleQueryRun() {
+  if (conditions.length === 0) {
+    alert('Please add at least one condition.');
+    return;
+  }
+
+  const combinedCqlFilter = evaluateConditions();
+
+  const attribute = conditions[0].split('=')[0].trim().replace(/'/g, '');
+
+  switch (attribute) {
+    case "Broad Landform":
+    case "Landform":
+    case "Landuse":
+    case "Slope":
+    case "TMU":
+      updateMapBaseMap(combinedCqlFilter);
+      break;
+    case "Soil Map":
+    case "Soil Depth":
+    case "Soil Erosion":
+    case "Soil Drainage":
+    case "Surface Texture":
+    case "Land Capability":
+      updateMapSoil(combinedCqlFilter);
+      break;
+    case "Arhar":
+    case "Horsegram":
+    case "Kharif Maize":
+    case "Kharif Paddy":
+    case "Lentil":
+    case "Potato":
+    case "Sesame":
+    case "Summer Paddy":
+    case "Wheat":
+    case "Vegetables":
+      updateMapSuitability(combinedCqlFilter);
+      break;
+  }
+}
+
+function updateMapBaseMap(cqlFilter) {
+  clearLayers();
+  map.addLayer(Gaya_2_4_BaseMap);
+
+  Gaya_2_4_BaseMap.getSource().updateParams({
+    cql_filter: cqlFilter,
+  });
+
+  map.getView().setCenter(ol.proj.transform([85.28, 24.54], "EPSG:4326", "EPSG:3857"));
+  map.getView().setZoom(12);
+
+  myFunctionLigend();
+}
+
+function updateMapSoil(cqlFilter) {
+  clearLayers();
+  map.addLayer(Gaya_2_4_Soil);
+
+  Gaya_2_4_Soil.getSource().updateParams({
+    cql_filter: cqlFilter,
+  });
+
+  map.getView().setCenter(ol.proj.transform([85.28, 24.54], "EPSG:4326", "EPSG:3857"));
+  map.getView().setZoom(12);
+
+  myFunctionLigendSoil();
+}
+
+function updateMapSuitability(cqlFilter) {
+  clearLayers();
+  map.addLayer(Gaya_2_4_Suitability);
+
+  Gaya_2_4_Suitability.getSource().updateParams({
+    cql_filter: cqlFilter,
+  });
+
+  map.getView().setCenter(ol.proj.transform([85.28, 24.54], "EPSG:4326", "EPSG:3857"));
+  map.getView().setZoom(12);
+
+  myFunctionLigendSuitability();
+}
+
+
+function clearLayers() {
+  // Clear existing layers, assuming map is the OpenLayers map object
+  map.getLayers().clear();
+}
+ */
+
 //End SINGLE LAYER QUERY
 
 
@@ -2143,15 +2372,12 @@ function MultiQueryBoxShowOrHide(){
  
 } */
 
-function singleQueryBoxShowOrHide() {
+function singleQueryBoxShow() {
   if (isClick) {
     singleQueryContainer.style.display = "block";
     multiQueryContainer.style.display = "none";
-    isClick = false;
-  } else {
-    singleQueryContainer.style.display = "none";
-    isClick = true;
-  }
+   
+  } 
 }
 
 function MultiQueryBoxShowOrHide() {
